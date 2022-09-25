@@ -45,8 +45,12 @@ function Character(data) {
         </div>`;
   };
 }
-
 const wizard = new Character(hero);
 const orc = new Character(monster);
-wizard.getCharacterHtml();
-orc.getCharacterHtml();
+
+function render() {
+  document.getElementById(wizard.elementId).innerHTML =  wizard.getCharacterHtml();
+  document.getElementById(orc.elementId).innerHTML = orc.getCharacterHtml();
+}
+
+render()
