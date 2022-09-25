@@ -54,6 +54,6 @@ function render() {
   document.getElementById(orc.elementId).innerHTML = orc.getCharacterHtml();
 }
 
-const wizard = new Character(hero);
-const orc = new Character(monster);
+const wizard = new Character(characterData.hero);
+const orc = new Character(characterData.monster);
 render();
