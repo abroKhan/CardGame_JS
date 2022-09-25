@@ -4,20 +4,22 @@ function getDiceRollArray(diceCount) {
   });
 }
 
-const hero = {
-  elementId: "hero",
-  name: "Wizard",
-  avatar: "images/wizard.png",
-  health: 60,
-  diceCount: 3,
-};
+const characterData = {
+  hero: {
+    elementId: "hero",
+    name: "Wizard",
+    avatar: "images/wizard.png",
+    health: 60,
+    diceCount: 3,
+  },
 
-const monster = {
-  elementId: "monster",
-  name: "Orc",
-  avatar: "images/orc.png",
-  health: 10,
-  diceCount: 1,
+  monster: {
+    elementId: "monster",
+    name: "Orc",
+    avatar: "images/orc.png",
+    health: 10,
+    diceCount: 1,
+  },
 };
 
 function Character(data) {
@@ -45,8 +47,6 @@ function Character(data) {
       </div>`;
   };
 }
-const wizard = new Character(hero);
-const orc = new Character(monster);
 
 function render() {
   document.getElementById(wizard.elementId).innerHTML =
@@ -54,4 +54,6 @@ function render() {
   document.getElementById(orc.elementId).innerHTML = orc.getCharacterHtml();
 }
 
+const wizard = new Character(hero);
+const orc = new Character(monster);
 render();
