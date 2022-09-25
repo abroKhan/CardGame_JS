@@ -1,8 +1,7 @@
 function getDiceRollArray(diceCount) {
-  const newDiceRolls = new Array(diceCount).fill(0).map(function () {
+  return new Array(diceCount).fill(0).map(function () {
     return Math.floor(Math.random() * 6) + 1;
   });
-  return newDiceRolls;
 }
 
 const hero = {
@@ -35,22 +34,24 @@ function Character(data) {
     const { elementId, name, avatar, health, diceCount } = this;
     const diceHtml = this.getDiceHtml(diceCount);
 
-    return `<div class="character-card">
-            <h4 class="name"> ${name} </h4>
-            <img class="avatar" src="${avatar}" />
-            <div class="health">health: <b> ${health} </b></div>
-            <div class="dice-container">    
-                ${diceHtml}
-            </div>
-        </div>`;
+    return `
+      <div class="character-card">
+        <h4 class="name"> ${name} </h4>
+        <img class="avatar" src="${avatar}" />
+        <div class="health">health: <b> ${health} </b></div>
+        <div class="dice-container">    
+        ${diceHtml}
+        </div>
+      </div>`;
   };
 }
 const wizard = new Character(hero);
 const orc = new Character(monster);
 
 function render() {
-  document.getElementById(wizard.elementId).innerHTML =  wizard.getCharacterHtml();
+  document.getElementById(wizard.elementId).innerHTML =
+    wizard.getCharacterHtml();
   document.getElementById(orc.elementId).innerHTML = orc.getCharacterHtml();
 }
 
-render()
+render();
