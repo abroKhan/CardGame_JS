@@ -7,13 +7,20 @@ function attack() {
   wizard.takeDamage(orc.currentDiceScore);
   orc.takeDamage(wizard.currentDiceScore);
   render();
-  if(wizard.dead || orc.dead){
+  if (wizard.dead || orc.dead) {
     endGame();
   }
 }
 
-function endGame(){
-  console.log("THe game is End");
+function endGame() {
+  const endMessage =
+    wizard.health === 0 && orc.health === 0
+      ? "The Game is tie. No one is victorious"
+      : wizard.health > 0
+      ? "The Wizard Wins"
+      : "The Orc Wins";
+
+  console.log(endMessage);
 }
 
 function render() {
