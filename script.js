@@ -15,12 +15,16 @@ function attack() {
 function endGame() {
   const endMessage =
     wizard.health === 0 && orc.health === 0
-      ? "The Game is tie. No one is victorious"
+      ? "Both Creatures Dies. No one is victorious"
       : wizard.health > 0
       ? "The Wizard Wins"
       : "The Orc Wins";
-
-  console.log(endMessage);
+  const endEmoji = wizard.health > 0 ? "🔮" : "☠️";
+  document.body.innerHTML = `<div class="end-game">
+            <h2>Game Over</h2>
+            <h3>${endMessage}</h3>
+            <p class="end-emoji">${endEmoji}</p>
+        </div>`;
 }
 
 function render() {
