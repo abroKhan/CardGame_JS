@@ -19,6 +19,10 @@ function Character(data) {
       return total + num;
     });
     this.health -= totalAttackScore;
+    if (this.health <= 0) {
+      this.dead = true;
+      this.health = 0;
+    }
   };
 
   this.getCharacterHtml = function () {
