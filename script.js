@@ -14,9 +14,18 @@ function attack() {
   wizard.takeDamage(monster.currentDiceScore);
   monster.takeDamage(wizard.currentDiceScore);
   render();
-  if (wizard.dead || monster.dead) {
+
+  if (wizard.dead) {
     endGame();
-    F;
+  } else if (monster.dead) {
+    if (monstersArray.length > 0) {
+      setTimeout(() => {
+        monster = getNewMonster();
+        render();
+      }, 1500);
+    } else {
+      endGame();
+    }
   }
 }
 
@@ -28,11 +37,15 @@ function endGame() {
       ? "The Wizard Wins"
       : "The monster Wins";
   const endEmoji = wizard.health > 0 ? "🔮" : "☠️";
-  document.body.innerHTML = `<div class="end-game">
-            <h2>Game Over</h2>
+  setTimeout(() => {
+    document.body.innerHTML = `
+        <div class="end-game">
+            <h2>Game Over</h2> 
             <h3>${endMessage}</h3>
             <p class="end-emoji">${endEmoji}</p>
-        </div>`;
+        </div>
+        `;
+  }, 1500);
 }
 
 function render() {
