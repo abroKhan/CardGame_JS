@@ -10,22 +10,23 @@ function getNewMonster() {
 
 function attack() {
   wizard.getDiceHtml();
-  orc.getDiceHtml();
-  wizard.takeDamage(orc.currentDiceScore);
-  orc.takeDamage(wizard.currentDiceScore);
+  monster.getDiceHtml();
+  wizard.takeDamage(monster.currentDiceScore);
+  monster.takeDamage(wizard.currentDiceScore);
   render();
-  if (wizard.dead || orc.dead) {
+  if (wizard.dead || monster.dead) {
     endGame();
+    F;
   }
 }
 
 function endGame() {
   const endMessage =
-    wizard.health === 0 && orc.health === 0
+    wizard.health === 0 && monster.health === 0
       ? "Both Creatures Dies. No one is victorious"
       : wizard.health > 0
       ? "The Wizard Wins"
-      : "The Orc Wins";
+      : "The monster Wins";
   const endEmoji = wizard.health > 0 ? "🔮" : "☠️";
   document.body.innerHTML = `<div class="end-game">
             <h2>Game Over</h2>
@@ -36,7 +37,7 @@ function endGame() {
 
 function render() {
   document.getElementById("hero").innerHTML = wizard.getCharacterHtml();
-  document.getElementById("monster").innerHTML = orc.getCharacterHtml();
+  document.getElementById("monster").innerHTML = monster.getCharacterHtml();
 }
 
 document.getElementById("attack-button").addEventListener("click", attack);
