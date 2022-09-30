@@ -1,6 +1,13 @@
 import { characterData } from "./Data.js";
 import { Character } from "./character.js";
 
+let monstersArray = ["orc", "demon", "goblin"];
+
+function getNewMonster() {
+  const nextMonsterData = characterData[monstersArray.shift()];
+  return nextMonsterData ? new Character(nextMonsterData) : {};
+}
+
 function attack() {
   wizard.getDiceHtml();
   orc.getDiceHtml();
@@ -33,6 +40,7 @@ function render() {
 }
 
 document.getElementById("attack-button").addEventListener("click", attack);
+
 const wizard = new Character(characterData.hero);
-const orc = new Character(characterData.monster);
+let monster = getNewMonster();
 render();
